@@ -2,111 +2,166 @@
 
 ## Data Analytics Capstone
 
-### Research Topic
+**QM640: Data Analytics Capstone**
 
-**Temporal Stability of Credit-Risk Factors in SBA 7(a) Lending**
-
----
-
-## 1. Project Overview
-
-This project examines whether approval-time credit-risk factors associated with subsequent SBA 7(a) loan charge-off remain stable across lending cohorts and whether changes in these relationships affect predictive reliability and risk classification.
-
-The study uses publicly available U.S. Small Business Administration (SBA) 7(a) loan-level data and focuses on information available at or around the time of loan approval.
-
-The central analytical problem is temporal stability: a credit-risk relationship identified from historical lending data may change as borrower characteristics, lending practices, economic conditions, and portfolio composition evolve.
-
-The study therefore progresses from identifying approval-time risk factors to examining their temporal stability, testing out-of-time predictive performance, and evaluating the implications for risk classification.
+**T Suresh Kumar**
 
 ---
 
-## 2. Business Problem
+## Project Overview
 
-Small-business lenders use borrower, business, loan, lender, industry, and geographic characteristics available at or around loan approval to assess credit risk.
+This project examines whether approval-time credit-risk factors associated
+with charge-off within 36 months of SBA 7(a) loan approval remain stable
+across lending cohorts.
 
-However, relationships between these approval-time characteristics and subsequent loan charge-off may change across lending cohorts. If these relationships change, a model developed using historical data may become less reliable when applied to subsequent borrowers.
+The study identifies relevant risk factors, tests whether their relationships
+with charge-off change over time, evaluates out-of-time predictive
+performance, and compares classification performance at prespecified
+probability thresholds.
 
-This study investigates whether approval-time credit-risk relationships remain stable over time and whether changes in those relationships affect predictive performance and charge-off classification.
+The findings are intended to support credit-risk monitoring, model
+validation, recalibration, and risk-classification review. The study does
+not make causal claims or propose operational loan-approval thresholds.
 
----
+## Research Questions
 
-## 3. Purpose of the Study
+## Final Research Questions and Hypotheses
 
-The purpose of this quantitative study is to examine the temporal stability of approval-time characteristics associated with 36-month charge-off risk in SBA 7(a) lending and to evaluate whether changes in these relationships affect predictive reliability and risk classification performance across sufficiently mature lending cohorts.
+### RQ1: Risk-Factor Identification
 
-The study will:
+**Research question:** Which approval-time credit-risk factors are
+independently associated with charge-off within 36 months of SBA 7(a)
+loan approval?
 
-1. Identify approval-time characteristics associated with 36-month charge-off risk.
-2. Examine whether relationships between important risk characteristics and charge-off risk differ across lending cohorts.
-3. Evaluate whether a credit-risk model developed using an earlier cohort maintains predictive performance when applied to a subsequent out-of-time cohort.
-4. Examine whether changes in predictive performance affect charge-off classification across prespecified risk-classification thresholds.
+**H0₁:** None of the selected factors is significantly associated with
+36-month charge-off.
 
----
+**H1₁:** At least one selected factor is significantly associated with
+36-month charge-off.
 
-## 4. Research Questions and Hypotheses
+**Method:** Multivariable logistic regression.
 
-### RQ1
+### RQ2: Temporal Stability
 
-**Which approval-time characteristics are significantly associated with 36-month SBA 7(a) loan charge-off risk?**
+**Research question:** Do the relationships between selected
+approval-time credit-risk factors and 36-month charge-off differ across
+eligible lending cohorts?
 
-**H01:** Approval-time characteristics are not significantly associated with 36-month SBA 7(a) loan charge-off risk.
+**H0₂:** The selected risk-factor relationships do not differ across
+eligible lending cohorts.
 
-**H11:** At least one approval-time characteristic is significantly associated with 36-month SBA 7(a) loan charge-off risk.
+**H1₂:** At least one selected risk-factor relationship differs across
+eligible lending cohorts.
 
-### RQ2
+**Method:** Logistic regression with cohort-by-predictor interaction
+terms.
 
-**To what extent do the associations between approval-time credit-risk characteristics and 36-month SBA 7(a) loan charge-off risk differ across sufficiently mature lending cohorts?**
+### RQ3: Out-of-Time Predictive Stability
 
-**H02:** Associations between approval-time credit-risk characteristics and 36-month SBA 7(a) loan charge-off risk do not significantly differ across sufficiently mature lending cohorts.
+**Research question:** Does ROC-AUC differ between the FY2021 validation
+cohort and the FY2022–FY2023 out-of-time cohort?
 
-**H12:** At least one association between an approval-time credit-risk characteristic and 36-month SBA 7(a) loan charge-off risk significantly differs across sufficiently mature lending cohorts.
+**H0₃:** ROC-AUC does not differ between the two evaluation cohorts.
 
-### RQ3
+**H1₃:** ROC-AUC differs between the two evaluation cohorts.
 
-**Does a credit-risk model developed using an earlier sufficiently mature SBA 7(a) lending cohort maintain its predictive performance when applied to a subsequent sufficiently mature lending cohort?**
+**Method:** Independent-cohort comparison of ROC-AUC.
 
-**H03:** The credit-risk model does not show a statistically significant difference in predictive performance between the earlier validation cohort and the subsequent out-of-time cohort.
+### RQ4: Classification Stability
 
-**H13:** The credit-risk model shows a statistically significant difference in predictive performance between the earlier validation cohort and the subsequent out-of-time cohort.
+**Research question:** Do classification-performance metrics differ
+between the validation and out-of-time cohorts at predicted-probability
+thresholds of 0.5%, 1%, 2%, 5%, and 10%?
 
-### RQ4
+**H0₄:** Classification performance does not differ between the two
+evaluation cohorts at the prespecified thresholds.
 
-**To what extent do differences in predictive performance between sufficiently mature SBA 7(a) lending cohorts alter charge-off classification performance across prespecified risk-classification thresholds?**
+**H1₄:** Classification performance differs between the two evaluation
+cohorts at one or more prespecified thresholds.
 
-**H04:** Charge-off classification performance does not significantly differ between the validation and subsequent out-of-time cohorts across the prespecified classification thresholds.
+**Method:** Comparison of sensitivity, specificity, positive predictive
+value, false-positive rate, and false-negative rate.
 
-**H14:** Charge-off classification performance significantly differs between the validation and subsequent out-of-time cohorts across at least one prespecified classification threshold.
+## Data Source
 
----
+The project uses the publicly available U.S. Small Business Administration
+7(a) Freedom of Information Act loan-level dataset.
 
-## 5. Data Source
+- **Resource:** 7(a) FY2020–Present
+- **Snapshot date:** 30 June 2026
+- **Unit of analysis:** Individual SBA 7(a) loan record
+- **Official source:** [SBA 7(a) and 504 FOIA Open Data](https://data.sba.gov/dataset/7a-504-foia)
 
-The primary data source is the U.S. Small Business Administration (SBA) **7(a) & 504 FOIA** open-data portal.
+The locally stored source file contains 388,338 observations and 42
+variables. 
 
-Official source:
+## Analytical Outcome
 
-https://data.sba.gov/dataset/7a-504-foia
+The primary outcome indicates whether an eligible loan experienced a
+qualifying charge-off within 36 months of approval.
 
-The SBA provides separate 7(a) files by fiscal-year period and a supporting data dictionary. The dataset is updated quarterly.
+- **Y = 1:** A qualifying charge-off occurred within 36 months.
+- **Y = 0:** Sufficient follow-up confirms that no qualifying charge-off
+  occurred within 36 months.
 
-This study uses the **7(a) FY2020-Present** loan-level data.
+A missing `ChargeOffDate` alone is not treated as evidence of a non-event.
 
-The source dataset used for the current study contains:
+The outcome is constructed using `ApprovalDate`, `LoanStatus`,
+`ChargeOffDate`, and other relevant outcome fields. These fields are not
+used as model predictors.
 
-- 388,338 observations
-- 42 variables
-- Approval dates from October 1, 2019 through June 30, 2026
+Because the source snapshot is dated 30 June 2026, the primary analysis
+requires approval on or before 30 June 2023 to provide a complete 36-month
+observation period.
 
-The unit of analysis is the individual SBA 7(a) loan record.
+## Analytical Cohorts
 
----
+The chronological design uses:
 
-## 6. Analytical Outcome
+- **FY2020:** Model development
+- **FY2021:** Model validation and selection
+- **Mature FY2022–FY2023 observations:** Out-of-time evaluation
 
-The primary outcome is a binary indicator of whether a loan is charged off within 36 months of its approval date.
+Cancelled loans, committed-but-undisbursed loans, immature observations,
+and records with unresolved status-date inconsistencies will be excluded.
 
-### Outcome definition
+## Initial Predictor Set
+
+| Predictor | Coding | Parameters |
+|---|---|---:|
+| `GrossApproval` | Continuous, initially linear | 1 |
+| `InitialInterestRate` | Continuous, initially linear | 1 |
+| `TermInMonths` | Continuous, initially linear | 1 |
+| `RevolverStatus` | Binary | 1 |
+| `CollateralInd` | Binary | 1 |
+| `BusinessType` | Three categories | 2 |
+| `BusinessAge` | Five categories, including Unknown/Missing | 4 |
+| **Total** |  | **11** |
+
+
+## Modelling and Validation
+
+Logistic regression will be used for risk-factor identification,
+interaction analysis, and as an interpretable predictive benchmark.
+
+XGBoost will be considered for predictive modelling. Preprocessing and
+model settings will be developed using FY2020, selected using FY2021, and
+locked before evaluation on the out-of-time cohort.
+
+Outcome-revealing fields and unnecessary borrower identifiers will be
+excluded from the predictive feature set.
+
+## Repository Structure
 
 ```text
-Y = 1 if CHGOFF occurs within 36 months of approval
-Y = 0 if CHGOFF does not occur within the 36-month analytical horizon
+SBA-7A-Temporal-Stability/
+├── README.md
+├── requirements.txt
+├── code/
+├── data/
+│   ├── raw/
+│   └── processed/
+├── docs/
+└── outputs/
+    ├── figures/
+    └── tables/
