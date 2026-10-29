@@ -2,7 +2,7 @@
 
 This directory contains the reproducible analysis scripts for the QM 640 Data Analytics Capstone.
 
-The analysis is organized sequentially according to the study methodology:
+The planned analysis workflow is organised sequentially:
 
 1. `01_data_import.py` — Import and inspect the source data.
 2. `02_data_quality.py` — Assess data quality, missingness, duplicates, and date consistency.
@@ -14,4 +14,4 @@ The analysis is organized sequentially according to the study methodology:
 8. `08_rq3_oot_validation.py` — Conduct chronological out-of-time predictive validation.
 9. `09_rq4_threshold_analysis.py` — Evaluate classification performance across prespecified risk thresholds.
 
-All scripts will be documented so that the analytical workflow can be reproduced from the available source data and documented processing steps.
+Scripts will be added and documented as each analytical stage is completed.
