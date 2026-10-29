@@ -82,6 +82,9 @@ cohorts at one or more prespecified thresholds.
 **Method:** Comparison of sensitivity, specificity, positive predictive
 value, false-positive rate, and false-negative rate.
 
+The thresholds are analytical comparison points and are not proposed as
+operational lending-policy cut-offs.
+
 ## Data Source
 
 The project uses the publicly available U.S. Small Business Administration
@@ -90,10 +93,22 @@ The project uses the publicly available U.S. Small Business Administration
 - **Resource:** 7(a) FY2020–Present
 - **Snapshot date:** 30 June 2026
 - **Unit of analysis:** Individual SBA 7(a) loan record
-- **Official source:** [SBA 7(a) and 504 FOIA Open Data](https://data.sba.gov/dataset/7a-504-foia)
+- **Official source:** [SBA 7(a) and 504 FOIA Open Data]
+                       (https://data.sba.gov/dataset/7a-504-foia)
 
-The locally stored source file contains 388,338 observations and 42
-variables. 
+The official data dictionary is stored in the `data` directory.
+  
+### Source-File Summary
+
+The locally stored source file contains:
+
+- **Observations:** 388,338
+- **Variables:** 42
+- **Approval-date range:** 1 October 2019 to 30 June 2026
+
+These figures describe the unfiltered source file and will be verified
+programmatically. Final analytical counts will be reported after maturity,
+eligibility, status, and data-quality rules are applied.
 
 ## Analytical Outcome
 
@@ -101,8 +116,9 @@ The primary outcome indicates whether an eligible loan experienced a
 qualifying charge-off within 36 months of approval.
 
 - **Y = 1:** A qualifying charge-off occurred within 36 months.
-- **Y = 0:** Sufficient follow-up confirms that no qualifying charge-off
-  occurred within 36 months.
+- **Y = 0:** Sufficient follow-up and internally consistent status
+  information confirm that no qualifying charge-off occurred within
+  36 months.
 
 A missing `ChargeOffDate` alone is not treated as evidence of a non-event.
 
@@ -110,10 +126,20 @@ The outcome is constructed using `ApprovalDate`, `LoanStatus`,
 `ChargeOffDate`, and other relevant outcome fields. These fields are not
 used as model predictors.
 
-Because the source snapshot is dated 30 June 2026, the primary analysis
-requires approval on or before 30 June 2023 to provide a complete 36-month
+## Maturity and Eligibility
+
+Because the source snapshot is dated 30 June 2026, loans must have been
+approved on or before 30 June 2023 to provide a complete 36-month
 observation period.
 
+The analytical population will exclude:
+
+- Loans without sufficient outcome follow-up
+- Cancelled loans
+- Committed-but-undisbursed loans
+- Records with unresolved status-date inconsistencies
+- Records without a verifiable binary outcome.
+  
 ## Analytical Cohorts
 
 The chronological design uses:
@@ -122,10 +148,13 @@ The chronological design uses:
 - **FY2021:** Model validation and selection
 - **Mature FY2022–FY2023 observations:** Out-of-time evaluation
 
-Cancelled loans, committed-but-undisbursed loans, immature observations,
-and records with unresolved status-date inconsistencies will be excluded.
+Preprocessing and model settings will be developed using FY2020, selected
+using FY2021, and locked before out-of-time evaluation.
 
 ## Initial Predictor Set
+
+The initial analysis includes seven approval-time predictors represented by
+11 candidate parameters.
 
 | Predictor | Coding | Parameters |
 |---|---|---:|
@@ -138,24 +167,40 @@ and records with unresolved status-date inconsistencies will be excluded.
 | `BusinessAge` | Five categories, including Unknown/Missing | 4 |
 | **Total** |  | **11** |
 
+Continuous predictors will be assessed for skewness and non-linearity.
+Categorical reference groups, sparse categories, and missing-value
+treatments will be documented before modelling.
+
+Outcome-revealing variables and unnecessary borrower identifiers will be
+excluded from the predictive feature set.
 
 ## Modelling and Validation
 
-Logistic regression will be used for risk-factor identification,
-interaction analysis, and as an interpretable predictive benchmark.
+Logistic regression will be used for RQ1, RQ2, and as an interpretable
+predictive benchmark.
 
-XGBoost will be considered for predictive modelling. Preprocessing and
-model settings will be developed using FY2020, selected using FY2021, and
-locked before evaluation on the out-of-time cohort.
+XGBoost will be considered for predictive modelling in RQ3 and RQ4.
 
-Outcome-revealing fields and unnecessary borrower identifiers will be
-excluded from the predictive feature set.
+The evaluation framework includes:
+
+- ROC-AUC
+- PR-AUC
+- Brier score
+- Calibration intercept and slope
+- Sensitivity and specificity
+- Positive predictive value
+- False-positive and false-negative rates
+
+Because charge-off is uncommon, classification accuracy will not be treated
+as the primary performance measure.
 
 ## Repository Structure
 
 ```text
 SBA-7A-Temporal-Stability/
 ├── README.md
+├── .gitignore
+├── .gitattributes
 ├── requirements.txt
 ├── code/
 ├── data/
