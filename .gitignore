@@ -1,0 +1,42 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE and editor files
+.vscode/
+.idea/
+
+# Environment variables and secrets
+.env
+.env.*
+*.key
+
+# Python testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build and package files
+build/
+dist/
+*.egg-info/
+
+# Temporary files
+*.tmp
+*.log
+~$*
