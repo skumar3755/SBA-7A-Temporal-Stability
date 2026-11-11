@@ -8,10 +8,8 @@ project.
 1. `01_data_import.py` – Import and verify the source data.
 2. `02_data_quality.py` – Assess missingness, duplicates, invalid
    values, and date inconsistencies.
-3. `03_cohort_construction.py` – Construct the 36-month outcome and
-   chronological cohorts.
-4. `04_eda.py` – Generate descriptive statistics and exploratory
-   figures.
+3. `03_outcome_cohort_construction.py` – Construct the 36-month outcome.
+4. `04_eda.py` – Exploratory Data Analysis
 5. `05_rq1_logistic.py` – Fit the preliminary RQ1 logistic-regression
    model.
 6. `06_rq2_interactions.py` – Evaluate cohort-by-predictor interactions.
@@ -21,3 +19,4 @@ project.
 
 Scripts will be added and documented as each analytical stage is
 completed.
+
