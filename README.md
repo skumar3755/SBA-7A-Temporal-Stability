@@ -91,7 +91,7 @@ The project uses the publicly available U.S. Small Business Administration
 7(a) Freedom of Information Act loan-level dataset.
 
 - **Resource:** 7(a) FY2020–Present
-- **Snapshot date:** 30 June 2026
+- **Snapshot date:** 30 September 2026
 - **Unit of analysis:** Individual SBA 7(a) loan record
 - **Official source:** [SBA 7(a) and 504 FOIA Open Data]
                        (https://data.sba.gov/dataset/7a-504-foia)
@@ -102,9 +102,9 @@ The official data dictionary is stored in the `data` directory.
 
 The locally stored source file contains:
 
-- **Observations:** 388,338
+- **Observations:** 403,644
 - **Variables:** 42
-- **Approval-date range:** 1 October 2019 to 30 June 2026
+- **Approval-date range:** 1 October 2019 to 30 September 2026
 
 These figures describe the unfiltered source file and will be verified
 programmatically. Final analytical counts will be reported after maturity,
