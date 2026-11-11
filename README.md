@@ -128,8 +128,8 @@ used as model predictors.
 
 ## Maturity and Eligibility
 
-Because the source snapshot is dated 30 June 2026, loans must have been
-approved on or before 30 June 2023 to provide a complete 36-month
+Because the source snapshot is dated 30 September 2026, loans must have been
+approved on or before 30 September 2023 to provide a complete 36-month
 observation period.
 
 The analytical population will exclude:
@@ -151,7 +151,7 @@ The chronological design uses:
 Preprocessing and model settings will be developed using FY2020, selected
 using FY2021, and locked before out-of-time evaluation.
 
-## Initial Predictor Set
+## Prespecified Predictor Set
 
 The initial analysis includes seven approval-time predictors represented by
 11 candidate parameters.
