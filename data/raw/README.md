@@ -7,8 +7,9 @@ This folder contains the original source data used in the project.
 - **Publisher:** U.S. Small Business Administration
 - **Dataset:** 7(a) and 504 Freedom of Information Act data
 - **Selected file:** 7(a) FY2020–Present
-- **Snapshot date:** 30 June 2026
-- **Official source:** [SBA 7(a) and 504 FOIA Open Data](https://data.sba.gov/dataset/7a-504-foia)
+- **Snapshot date:** 30 September 2026
+- **Official source:** [SBA 7(a) and 504 FOIA Open Data]
+                        (https://data.sba.gov/dataset/7a-504-foia)
 
 ## Source File
 
